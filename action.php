@@ -1,6 +1,8 @@
 <?php
+// require_once 'classes/Users.php';
 require_once 'db.php';
 
+// $db = new User();
 $db = new Database();
 
 if (isset($_POST['action']) && $_POST['action'] == 'view') {
@@ -28,10 +30,10 @@ if (isset($_POST['action']) && $_POST['action'] == 'view') {
     foreach ($data as $row) {
       $output .= '<tr class="text-center text-secondary">
       <td>'.$row['id'].'</td>
-      <td>'.$row['first_name'].'</td>
-      <td>'.$row['last_name'].'</td>
-      <td>'.$row['email'].'</td>
-      <td>'.$row['phone'].'</td>;
+      <td>'.$row["firstname"].'</td>
+      <td>'.$row["lastname"].'</td>
+      <td>'.$row["email"].'</td>
+      <td>'.$row["phone"].'</td>;
       <td>
           <a href="#" title="View Details" class="text-success"><i
               class="fas fa-info-circle fa-lg"></i></a>&nbsp;&nbsp;
@@ -52,12 +54,29 @@ if (isset($_POST['action']) && $_POST['action'] == 'view') {
     
 }
 
-
-if (isset($_POST['action']) && $_POST['action'] == "insert") {
-  $fname = $_POST['fname'];
-  $lname = $_POST['lname'];
+if (isset($_POST['action']) && $_POST['action'] == 'insert') {
+  $firstname = $_POST['firstname']; 
+  $lastname = $_POST['lastname'];
   $email = $_POST['email'];
   $phone = $_POST['phone'];
 
-  $db->insert($fname, $lname, $email, $phone);
+  // $fields = [
+  //   'firstname' => $firstname,
+  //   'lastname' => $lastname,
+  //   'email' => $email,
+  //   'phone' => $phone
+
+  // ];
+
+
+  // $insert = $db->insert($fields);
+
+  // if ($insert) {
+  //   echo "Data Inserted";
+  // }
+
+  // else {
+  //   echo "Data NOT inserted";
+  // }
+  
 }

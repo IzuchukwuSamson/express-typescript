@@ -15,3 +15,9 @@
                   <?= $i?> @gmail.com
                 </td>
                 <td>23456789</td> -->
+
+                <td>'.$row->id.'</td>
+      <td>'.$row->firstname.'</td>
+      <td>'.$row->lastname.'</td>
+      <td>'.$row->email.'</td>
+      <td>'.$row->phone.'</td>;

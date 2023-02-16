@@ -16,7 +16,7 @@ class Database {
   }
 
   public function insert($fname, $lname, $email, $phone) {
-    $sql = "INSERT INTO users (first_name, last_name, email, phone) VALUES (:fname, :lname, :email, :phone)";
+    $sql = "INSERT INTO users (firstname, lastname, email, phone) VALUES (:fname, :lname, :email, :phone)";
     $stmt = $this->conn->prepare($sql);
     $stmt->execute(['fname'=>$fname,'lname'=>$lname, 'email'=>$email, 'phone'=>$phone]);
 
@@ -79,3 +79,14 @@ class Database {
 $ob = new Database();
 // print_r($ob->read());
 // echo $ob->totalRowCount();
+
+//Post Request
+// $data = ["first_name" => "Izu",
+// "last_name" => "Sam",
+// "email" => "izu@gmail.com",
+// "phone" => 123
+
+
+// ];
+// $ob->insert($data);
+// var_dump($ob->read());

@@ -90,12 +90,12 @@
 
         <!-- Modal body -->
         <div class="modal-body px-4">
-          <form action="" method="post" id="form-data">
+          <form action="action.php" method="post" id="form-data">
             <div class="form-group">
-              <input type="text" name="fname" class="form-control" placeholder="First Name" required>
+              <input type="text" name="firstname" class="form-control" placeholder="First Name" required>
             </div>
             <div class="form-group">
-              <input type="text" name="lname" class="form-control" placeholder="Last Name" required>
+              <input type="text" name="lastname" class="form-control" placeholder="Last Name" required>
             </div>
             <div class="form-group">
               <input type="email" name="email" class="form-control" placeholder="Email" required>
@@ -139,51 +139,7 @@
   <!-- Sweet Alert -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <script type="text/javascript">
-  $(document).ready(function() {
-    // $("table").DataTable();
-
-    showAllUsers();
-
-    function showAllUsers() {
-      $.ajax({
-        url: "actions.php",
-        type: "POST",
-        data: {
-          action: "view"
-        },
-        success: function(response) {
-          // console.log(response);
-          $("#showUser").html(response);
-          $("table").DataTable({
-            order: [0, 'desc']
-          });
-
-        }
-      })
-
-    }
-
-    // Insert Ajax Request
-    $("#insert").click(function(e) {
-      if ($("#form-data")[0].checkValidity()) {
-        e.preventDefault();
-
-        $.ajax({
-          url: "actions.php",
-          type: "POST",
-          data: $("#form-data").serialize() + "&action=insert",
-          success: function(response) {
-            console.log(response);
-
-
-          }
-        })
-
-      }
-
-    })
-  })
+  <script type="text/javascript" src="script.js">
   </script>
 
 </body>
