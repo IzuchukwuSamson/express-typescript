@@ -66,45 +66,8 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="table-responsive" id="showUser">
-          <table class="table table-striped table-sm table-bordered">
-            <thead>
-              <tr class="text-center ">
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>E-mail</th>
-                <th>Phone</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php 
-                for ($i=1                           ; $i <100 ; $i++): 
-                ?>
-              <tr class="text-center text-secondary">
-                <td>
-                  <?= $i?>
-                </td>
-                <td>User
-                  <?= $i?>
-                </td>
-                <td>Title
-                  <?= $i?>
-                </td>
-                <td>email.
-                  <?= $i?> @gmail.com
-                </td>
-                <td>23456789</td>
-                <td>
-                  <a href="#" title="View Details" class="text-success"><i
-                      class="fas fa-info-circle fa-lg"></i></a>&nbsp;&nbsp;
-                  <a href="#" title="Edit" class="text-primary"><i class="fas fa-edit fa-lg"></i></a>&nbsp;&nbsp;
-                  <a href="#" title="Delete" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-                </td>
-              </tr>
-              <?php endfor; ?>
-            </tbody>
-          </table>
+
+
         </div>
 
       </div>
@@ -138,7 +101,7 @@
               <input type="email" name="email" class="form-control" placeholder="Email" required>
             </div>
             <div class="form-group">
-              <input type="number" name="fname" class="form-control" placeholder="Phone Number" required>
+              <input type="number" name="phone" class="form-control" placeholder="Phone Number" required>
             </div>
             <div class="form-group">
               <input type="submit" name="insert" id="insert" value="Add User" class="btn btn-primary btn-block">
@@ -160,11 +123,10 @@
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <!-- Popper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
   <!-- Latest compiled JavaScript -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <!-- Icons -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
@@ -179,24 +141,48 @@
 
   <script type="text/javascript">
   $(document).ready(function() {
-    $("table").DataTable();
+    // $("table").DataTable();
 
-    function showAllUsers();
+    showAllUsers();
 
-    $.ajax({
-      url: "actions.php";
-      type: "POST",
-      data: {
-        action: "view"
-      },
-      success: function(response) {
-        console.log(response);
+    function showAllUsers() {
+      $.ajax({
+        url: "actions.php",
+        type: "POST",
+        data: {
+          action: "view"
+        },
+        success: function(response) {
+          // console.log(response);
+          $("#showUser").html(response);
+          $("table").DataTable({
+            order: [0, 'desc']
+          });
+
+        }
+      })
+
+    }
+
+    // Insert Ajax Request
+    $("#insert").click(function(e) {
+      if ($("#form-data")[0].checkValidity()) {
+        e.preventDefault();
+
+        $.ajax({
+          url: "actions.php",
+          type: "POST",
+          data: $("#form-data").serialize() + "&action=insert",
+          success: function(response) {
+            console.log(response);
+
+
+          }
+        })
+
       }
+
     })
-
-
-
-
   })
   </script>
 
