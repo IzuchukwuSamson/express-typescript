@@ -8,25 +8,35 @@ class User  {
     $this->db = new Database;
   }
 
-  function insert($data){
+  // function insert($data){
 
-    $implodeColumns = implode(',', array_keys($data));
-    $implodePlaceholder = implode(', :', array_keys($data));
+    public function insert($firstname, $lastname, $email, $phone) {
+      $query = "INSERT INTO users (firstname, lastname, email, phone) VALUES (?, ?, ?)";
+      $stmt = $this->db->prepare($query);
+      $stmt->bind_param("sss", $firstname, $lastname, $email, $phone);
+      $stmt->execute();
+      $stmt->close();
+    
 
-    $this->db->query("INSERT INTO users ($implodeColumns) VALUES (:".$implodePlaceholder.')');
-    // $stmt = $this->db->query($sql);
+    // $implodeColumns = implode(',', array_keys($data));
+    // $implodePlaceholder = implode(', :', array_keys($data));
 
-    foreach ($data as $key => $value) {
-      $this->db->bind(':'.$key, $value);
+    // $this->db->query("INSERT INTO users ($implodeColumns) VALUES (:".$implodePlaceholder.')');
+    // // $stmt = $this->db->query($sql);
 
-    }
 
-    if ($this->db->execute()) {
-      return true;
-    }
-    else {
-      return false;
-    }
+
+    // foreach ($data as $key => $value) {
+    //   $this->db->bind(':'.$key, $value);
+
+    // }
+
+    // if ($this->db->execute()) {
+    //   return true;
+    // }
+    // else {
+    //   return false;
+    // }
 
     // $this->db->query("INSERT INTO users(firstname,lastname, email, phone) VALUES (:firstname, :lastname, :email, :phone )");
    
@@ -182,3 +192,7 @@ $user = new User();
 // $user->insert($dat);
 
 // var_dump($user->read());
+
+
+// Call the insertUser method to insert a new user
+$user->insert("john_doe", "eee", "john@example.com", 88);

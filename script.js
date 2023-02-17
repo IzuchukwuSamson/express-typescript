@@ -1,6 +1,4 @@
 $(document).ready(function () {
-  // $("table").DataTable();
-
   showAllUsers();
 
   function showAllUsers() {
@@ -30,7 +28,16 @@ $(document).ready(function () {
         type: "POST",
         data: $("#form-data").serialize() + "&action=insert",
         success: function (response) {
-          console.log(response);
+          // console.log(response);
+          Swal.fire({
+            title: "User Added Succesfully",
+            type: "success",
+          });
+
+          $("#addModal").modal("hide");
+          $("#form-data")[0].reset();
+
+          showAllUsers();
         },
       });
     }

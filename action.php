@@ -54,11 +54,15 @@ if (isset($_POST['action']) && $_POST['action'] == 'view') {
     
 }
 
-if (isset($_POST['action']) && $_POST['action'] == 'insert') {
+if (isset($_POST['action']) && $_POST['action'] == "insert") {
   $firstname = $_POST['firstname']; 
   $lastname = $_POST['lastname'];
   $email = $_POST['email'];
   $phone = $_POST['phone'];
+
+  $db->insert($firstname ,$lastname, $email, $phone);
+
+
 
   // $fields = [
   //   'firstname' => $firstname,

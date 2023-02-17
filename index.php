@@ -139,8 +139,7 @@
   <!-- Sweet Alert -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <script type="text/javascript" src="script.js">
-  </script>
+  <script type="text/javascript" src="script.js"></script>
 
 </body>
 

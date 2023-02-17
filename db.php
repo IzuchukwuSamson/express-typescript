@@ -48,7 +48,7 @@ class Database {
   }
 
   public function update($fname, $lname, $email, $phone) {
-    $sql = "UPDATE users SET first_name = :fname, last_name = :lname, email = :email, phone = :phone WHERE id = :id";
+    $sql = "UPDATE users SET firstname = :fname, lastname = :lname, email = :email, phone = :phone WHERE id = :id";
     $stmt = $this->conn->prepare($sql);
     $stmt->execute(['fname'=>$fname,'lname'=>$lname, 'email'=>$email, 'phone'=>$phone, id=>$id]);
 
@@ -76,17 +76,7 @@ class Database {
   }
   
 }
-$ob = new Database();
+// $ob = new Database();
 // print_r($ob->read());
-// echo $ob->totalRowCount();
 
-//Post Request
-// $data = ["first_name" => "Izu",
-// "last_name" => "Sam",
-// "email" => "izu@gmail.com",
-// "phone" => 123
-
-
-// ];
-// $ob->insert($data);
-// var_dump($ob->read());
+?>
