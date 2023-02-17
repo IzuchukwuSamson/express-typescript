@@ -23,6 +23,8 @@ class Database {
     return true;
   }
 
+ 
+
   public function read() {
     $data = array();
     $sql = "SELECT * FROM users";
