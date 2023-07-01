@@ -6,6 +6,8 @@ const cookieParser = require("cookie-parser");
 const lessMiddleware = require("less-middleware");
 const logger = require("morgan");
 const dotenv = require("dotenv");
+const cors = require("cors");
+const bodyParser = require("body-parser");
 
 dotenv.config({ path: "./.env" });
 
@@ -13,6 +15,18 @@ const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 
 const app = express();
+
+var corsOptions = {
+  origin: "http://localhost:8080/",
+};
+app.use(cors(corsOptions));
+
+// parse requests of content-type - application/json
+
+app.use(bodyParser.json());
+// parse requests of content-type - application/x-www-form-urlencoded
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
